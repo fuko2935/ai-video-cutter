@@ -71,7 +71,7 @@ export default function Home() {
     }
   }, [videoId, uploadStatus])
 
-  // Video yükleme
+  // Video yükleme fonksiyonunu güncelle
   const handleVideoUpload = async (file) => {
     setIsUploading(true)
     setUploadStatus('Video yükleniyor...')
@@ -79,14 +79,20 @@ export default function Home() {
     const formData = new FormData()
     formData.append('video', file)
     
+    // Debug için
+    console.log('Uploading file:', file.name, file.size)
+    
     try {
       const response = await axios.post(`${API_URL}/api/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
-        }
+        },
+        timeout: 300000 // 5 dakika timeout
       })
       
-      const { video_id } = response.data
+      const { video_id, message } = response.data
+      console.log('Upload successful:', video_id)
+      
       setVideoId(video_id)
       setVideoFile(file)
       setVideoUrl(URL.createObjectURL(file))
@@ -99,10 +105,12 @@ export default function Home() {
       })
     } catch (error) {
       console.error('Upload error:', error)
-      setUploadStatus('Yükleme hatası!')
+      const errorMessage = error.response?.data?.error || error.message || 'Video yüklenirken hata oluştu!'
+      
+      setUploadStatus(`Hata: ${errorMessage}`)
       setSnackbar({
         open: true,
-        message: 'Video yüklenirken hata oluştu!',
+        message: errorMessage,
         severity: 'error'
       })
     } finally {
@@ -162,7 +170,7 @@ export default function Home() {
       
       setSnackbar({
         open: true,
-        message: 'Video işleniyor, lütfen bekleyin...',
+        message: 'Video işleniyor, lütfen bekleyin...',}
         severity: 'info'
       })
       
