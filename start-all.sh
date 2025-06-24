@@ -3,7 +3,12 @@
 # Tüm servisleri başlatan script (Project IDX için)
 
 echo "🚀 AI Video Cutter Başlatılıyor..."
-echo "================================"
+echo "==============================="
+
+# Log klasörünü oluştur ve eski logları temizle
+mkdir -p logs
+echo "=== New Session Started at $(date) ===" > logs/app.log
+echo "📝 Log dosyası temizlendi"
 
 # Renk tanımlamaları
 GREEN='\033[0;32m'
