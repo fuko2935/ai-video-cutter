@@ -1,0 +1,52 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Docker volumes
+docker-volumes/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backend specific
+backend/__pycache__/
+backend/*.pyc
+backend/venv/
+backend/env/
+backend/uploads/
+backend/processed/
+
+# Frontend specific
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+
+# Test coverage
+coverage/
+.coverage
+htmlcov/
+
+# Documentation build
+docs/_build/
+
+# Backup files
+*.bak
+*.backup
