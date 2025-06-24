@@ -1,0 +1,8 @@
+Flask==3.0.0
+Flask-CORS==4.0.0
+celery==5.3.4
+redis==5.0.1
+google-genai==0.1.0
+python-dotenv==1.0.0
+werkzeug==3.0.1
+gunicorn==21.2.0
